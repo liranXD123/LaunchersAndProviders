@@ -19,7 +19,7 @@ class TestActivity: AppCompatActivity() {
         binding = ActivityTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.nameOutput.text = intent.getStringExtra("name")
+        binding.nameOutput.text = intent.getStringExtra(MyTestActivityContract.EXTRA_NAME)
         binding.rgq1.setOnCheckedChangeListener { radioGroup, i ->
             q1 = when(i){R.id.rb3q1 -> true else ->false}
         }
@@ -33,8 +33,9 @@ class TestActivity: AppCompatActivity() {
             if(q1) grade+=50
             if(q2) grade+=50
 
-            val intent = Intent().apply { putExtra("Grade", grade) }
+            val intent = Intent().apply { putExtra(MyTestActivityContract.EXTRA_GRADE, grade) }
             setResult(RESULT_OK, intent)
+            finish()
         }
     }
 }
